@@ -10,11 +10,9 @@ app.use(express.static("public"));
 const baseURL = "https://us21.api.mailchimp.com/3.0/";
 
 // hide these before pushing to github
-// const list_id = config.application_data.list_id;
-// const api_key = config.application_data.api_key;
+const list_id = config.application_data.list_id;
+const api_key = config.application_data.api_key;
 
-const list_id = "3011aaff57";
-const api_key = "0baf4246b02b958d4cf3647bab71-us21";
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/signup.htm");
