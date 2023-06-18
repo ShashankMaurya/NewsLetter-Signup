@@ -68,11 +68,8 @@ app.post('/', function (req, res) {
 
 });
 
-app.post('/failure', function(req, res){
+app.post('/failure', function (req, res) {
     res.redirect('/');
 });
 
-app.listen(process.env.PORT || 3000, () => {
-    console.log('server started at port 3000');
-    console.log(list_id, api_key);
-});
+app.listen(process.env.PORT || 3000, () => console.log('server started at port 3000'));
