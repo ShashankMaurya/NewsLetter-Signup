@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const https = require('https');
+const config = require('./config.json');
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -9,8 +10,11 @@ app.use(express.static("public"));
 const baseURL = "https://us21.api.mailchimp.com/3.0/";
 
 // hide these before pushing to github
-const list_id = '3011aaff57';
-const api_key = '0baf4246b02b958d4cf3647bab71-us21';
+// const list_id = config.application_data.list_id;
+// const api_key = config.application_data.api_key;
+
+const list_id = "3011aaff57";
+const api_key = "0baf4246b02b958d4cf3647bab71-us21";
 
 app.get('/', function (req, res) {
     res.sendFile(__dirname + "/signup.htm");
@@ -21,7 +25,7 @@ app.post('/', function (req, res) {
     var lname = req.body.lname;
     var email = req.body.email;
 
-    console.log(fname, lname, email);
+    // console.log(fname, lname, email);
 
     let data = {
         members: [
@@ -70,4 +74,7 @@ app.post('/failure', function(req, res){
     res.redirect('/');
 });
 
-app.listen(process.env.PORT || 3000, () => console.log('server started at port 3000'));
+app.listen(process.env.PORT || 3000, () => {
+    console.log('server started at port 3000');
+    console.log(list_id, api_key);
+});
